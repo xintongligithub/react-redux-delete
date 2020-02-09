@@ -1,8 +1,9 @@
 import React from 'react';
-import classes from './Person.module.css';
 
-const person = (props) => {
-    return (<div className={classes.Person}>I'm a {props.name} I'm {props.age} years old</div>);
-};
+const Person = (props) => {
+    return(
+        <div>I'm {props.name}. I'm {props.age} years old</div>
+    );
+}
 
-export default person;
+export default Person;

@@ -7,10 +7,22 @@ import { connect } from 'react-redux';
 //npm install --save redux react-redux
 
 class App extends Component {
-
+  state = {
+    showPersons: true,
+    showPersonsCSS: "ShowPerson",
+  }
+  togglePersonsHandler = () => {
+    this.setState((preState) =>{return {showPersons: !preState.showPersons}})
+  }
+  greyBackgroundHandler = () => {
+    this.setState({showPersonsCSS: "ShowPerson greyBackground"})
+  }
+  blueBackgroundHandler = () => {
+    this.setState({showPersonsCSS: "ShowPerson blueBackground"})
+  }
   render() {
     let persons = null;
-    if(this.props.showPersons)
+    if(this.state.showPersons)
     persons = this.props.persons.map((person,index) =>{ 
       let cssName;
       if(index % 2 === 0)
@@ -27,10 +39,13 @@ class App extends Component {
 
     return (
     <div className="App">
-      <div className="ShowPerson" onClick={this.props.togglePersons}> SHOW PERSONS </div>
+      <div className={this.state.showPersonsCSS} onClick={this.togglePersonsHandler}> SHOW PERSONS </div>
       <div className="Container">
         {persons}
       </div>
+      <button onClick={this.blueBackgroundHandler}>blue background</button>
+      <br />
+      <button onClick={this.greyBackgroundHandler}>grey background</button>
     </div>
     )
   }
@@ -45,7 +60,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    togglePersons: () => dispatch({type: 'TOGGLEPERSONS'}),
     deletePerson: (index) => dispatch({type: 'DELETEPERSON',index:index})
   }
 }
