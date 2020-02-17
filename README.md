@@ -1,3 +1,5 @@
+Generate random names with delete function using redux
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
